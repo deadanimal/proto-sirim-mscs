@@ -1,0 +1,509 @@
+<div class="header pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-12 col-7">
+                    <h6 class="h2 text-dark d-inline-block mb-0"> Scheduler </h6>
+
+                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> <i class="fas fa-calendar-alt text-dark"> </i> </a>
+                            </li>
+                            <li aria-current="page" class="breadcrumb-item active">
+                                Scheduler
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <h3 class="m-0 text-white"> Monthly routine Audit </h3>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="amchart" id="chartscheduler3Dstacked1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card">
+                    <div class="card-header bg-default">
+                        <h3 class="m-0 text-white"> Audit Rating </h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart">
+                            <div class="amchart" id="chartscheduler3Dpie1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div class=" row">
+                <div class=" col">
+                  <div class=" card card-calendar">
+                    <div class=" card-header bg-default"><h5 class=" h3 mb-0 text-white"> Calendar </h5></div>
+            
+                    <div class=" card-body p-0">
+                      <div class=" calendar" data-toggle="calendar" id="calendar"></div>
+                    </div>
+                  </div>
+            
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="new-event-label"
+                    class=" modal fade"
+                    id="new-event"
+                    role="dialog"
+                    tabindex="-1"
+                  >
+                    <div
+                      class=" modal-dialog modal-dialog-centered modal-secondary"
+                      role="document"
+                    >
+                      <ng-template #modalAdd>
+                        <div class=" modal-body">
+                          <form class=" new-event--form">
+                            <div class=" form-group">
+                              <label class=" form-control-label"> Event title </label>
+            
+                              <input
+                                class=" form-control form-control-alternative new-event--title"
+                                id="new-event--title"
+                                placeholder="Event Title"
+                                type="text"
+                                (change)="getNewEventTitle($event)"
+                              />
+                            </div>
+            
+                            <div class=" form-group mb-0">
+                              <label class=" form-control-label d-block mb-3">
+                                Status color
+                              </label>
+            
+                              <div
+                                class=" btn-group btn-group-toggle btn-group-colors event-tag"
+                                data-toggle="buttons"
+                              >
+                                <label
+                                  class=" btn bg-info"
+                                  [ngClass]="{ active: radios === 'bg-info' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    checked="checked"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-info"
+                                    (click)="radios = 'bg-info'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-warning"
+                                  [ngClass]="{ active: radios === 'bg-warning' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-warning"
+                                    (click)="radios = 'bg-warning'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-danger"
+                                  [ngClass]="{ active: radios === 'bg-danger' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-danger"
+                                    (click)="radios = 'bg-danger'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-success"
+                                  [ngClass]="{ active: radios === 'bg-success' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-success"
+                                    (click)="radios = 'bg-success'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-default"
+                                  [ngClass]="{ active: radios === 'bg-default' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-default"
+                                    (click)="radios = 'bg-default'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-primary"
+                                  [ngClass]="{ active: radios === 'bg-primary' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-primary"
+                                    (click)="radios = 'bg-primary'"
+                                  />
+                                </label>
+                              </div>
+                            </div>
+            
+                            <input class=" new-event--start" type="hidden" />
+            
+                            <input class=" new-event--end" type="hidden" />
+                          </form>
+                        </div>
+            
+                        <div class=" modal-footer">
+                          <button
+                            class=" btn btn-primary new-event--add"
+                            type="submit"
+                            (click)="addNewEvent()"
+                          >
+                            Add event
+                          </button>
+            
+                          <button
+                            (click)="addModal.hide()"
+                            class=" btn btn-link ml-auto"
+                            data-dismiss="modal"
+                            type="button"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+            
+                  <div
+                    aria-hidden="true"
+                    aria-labelledby="edit-event-label"
+                    class=" modal fade"
+                    id="edit-event"
+                    role="dialog"
+                    tabindex="-1"
+                  >
+                    <div
+                      class=" modal-dialog modal-dialog-centered modal-secondary"
+                      role="document"
+                    >
+                      <ng-template #modalEdit>
+                        <div class=" modal-body">
+                          <form class=" edit-event--form">
+                            <div class=" form-group">
+                              <label class=" form-control-label"> Event title </label>
+            
+                              <input
+                                class=" form-control form-control-alternative edit-event--title"
+                                placeholder="Event Title"
+                                type="text"
+                                value="{{ eventTitle }}"
+                                (change)="getNewEventTitle($event)"
+                              />
+                            </div>
+            
+                            <div class=" form-group">
+                              <label class=" form-control-label d-block mb-3">
+                                Status color
+                              </label>
+            
+                              <div
+                                class=" btn-group btn-group-toggle btn-group-colors event-tag mb-0"
+                                data-toggle="buttons"
+                              >
+                                <label
+                                  class=" btn bg-info"
+                                  [ngClass]="{ active: radios === 'bg-info' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    checked="checked"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-info"
+                                    (click)="radios = 'bg-info'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-warning"
+                                  [ngClass]="{ active: radios === 'bg-warning' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-warning"
+                                    (click)="radios = 'bg-warning'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-danger"
+                                  [ngClass]="{ active: radios === 'bg-danger' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-danger"
+                                    (click)="radios = 'bg-danger'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-success"
+                                  [ngClass]="{ active: radios === 'bg-success' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-success"
+                                    (click)="radios = 'bg-success'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-default"
+                                  [ngClass]="{ active: radios === 'bg-default' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-default"
+                                    (click)="radios = 'bg-default'"
+                                  />
+                                </label>
+            
+                                <label
+                                  class=" btn bg-primary"
+                                  [ngClass]="{ active: radios === 'bg-primary' }"
+                                >
+                                  <input
+                                    autocomplete="off"
+                                    name="event-tag"
+                                    type="radio"
+                                    value="bg-primary"
+                                    (click)="radios = 'bg-primary'"
+                                  />
+                                </label>
+                              </div>
+                            </div>
+            
+                            <div class=" form-group">
+                              <label class=" form-control-label"> Description </label>
+            
+                              <textarea
+                                class=" form-control form-control-alternative edit-event--description textarea-autosize"
+                                placeholder="Event Desctiption"
+                                value="{{ eventDescription }}"
+                                (change)="getNewEventDescription($event)"
+                              ></textarea>
+            
+                              <i class=" form-group--bar"> </i>
+                            </div>
+            
+                            <input class=" edit-event--id" type="hidden" />
+                          </form>
+                        </div>
+            
+                        <div class=" modal-footer">
+                          <button
+                            class=" btn btn-primary"
+                            data-calendar="update"
+                            (click)="updateEvent()"
+                          >
+                            Update
+                          </button>
+            
+                          <button
+                            class=" btn btn-danger"
+                            data-calendar="delete"
+                            (click)="deleteEventSweetAlert()"
+                          >
+                            Delete
+                          </button>
+            
+                          <button
+                            class=" btn btn-link ml-auto"
+                            data-dismiss="modal"
+                            (click)="editModal.hide()"
+                          >
+                            Close
+                          </button>
+                        </div>
+                      </ng-template>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+
+        <div class="col-xl-12">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <h3 class="m-0 text-white"> Auditor </h3>
+                </div>
+                <div class="card-body">
+                    <div class="dataTables_wrapper py-4">
+                        <div class="row">
+                          <div class="col-sm-12 col-md-6">
+                            <div class="dataTables_length" id="datatable_length">
+                              <label>
+                                Show
+                                <select
+                                  name="datatable_length"
+                                  aria-controls="datatable"
+                                  class="form-control form-control-sm"
+                                  (change)="entriesChange($event)"
+                                >
+                                  <option value="5" [selected]="entries==5">5</option>
+                                  <option value="10" [selected]="entries==10">10</option>
+                                  <option value="15" [selected]="entries==15">15</option>
+                                  <option value="-1" [selected]="entries==-1">All</option>
+                                </select>
+                                entries
+                                </label>
+                            </div>
+                          </div>
+                          <div class="col-sm-12 col-md-6">
+                            <div id="datatable_filter" class="dataTables_filter">
+                              <label>
+                                <input
+                                  type="search"
+                                  class="form-control form-control-sm"
+                                  placeholder="Search records"
+                                  aria-controls="datatable"
+                                  (keyup)="filterTable($event)"
+                                />
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                    
+                        <ngx-datatable
+                          class="bootstrap selection-cell"
+                          [columnMode]="'force'"
+                          [headerHeight]="50"
+                          [footerHeight]="50"
+                          [rowHeight]="'auto'"
+                          [limit]="entries != -1 ? entries:undefined"
+                          [rows]="temp"
+                          
+                        >
+                    
+                            <ngx-datatable-column name="Client Name" >
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{row.name}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Schedular Name" >
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{row.typeDoc}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Lead Audit" >
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{row.office}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Date" >
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                {{row.date}}
+                                </ng-template>
+                            </ngx-datatable-column>
+                            <ngx-datatable-column name="Action">
+                                <ng-template let-row="row" ngx-datatable-cell-template>
+                                    <button class=" btn btn-icon btn-default btn-sm" type="button" title="Scheduler" (click)="openModal(scheduler)">
+                                        <span class=" btn-inner--icon"> <i class=" fas fa-calendar-alt"> </i> </span>
+                                    </button>
+                                    <button class=" btn btn-icon btn-danger btn-sm" type="button" title="PDF" (click)="openModal(scheduler)">
+                                        <span class=" btn-inner--icon"> <i class=" fas fa-file-pdf"> </i> </span>
+                                    </button>
+                                    <button class=" btn btn-icon btn-success btn-sm" type="button" title="HTML" (click)="openModal(scheduler)">
+                                        <span class=" btn-inner--icon"> <i class=" fas fa-file-pdf"> </i> </span>
+                                    </button>
+                                </ng-template>
+                            </ngx-datatable-column>
+                        </ngx-datatable>
+                      </div>
+                </div>
+            </div>  
+        </div>
+    </div>
+</div>
+
+<ng-template #scheduler>
+    <div class=" modal-header bg-default ">
+        <h6 class=" modal-title text-white" id="modal-title-default">
+            Scheduler
+        </h6>
+
+        <button
+        aria-label="Close"
+        class=" close"
+        data-dismiss="modal"
+        type="button"
+        (click)="modalRef.hide()"
+        >
+        <span aria-hidden="true"> × </span>
+        </button>
+    </div>
+
+    <div class="modal-body">
+
+    </div>
+
+    <div class=" modal-footer">
+        <button 
+            class=" btn btn-default text-white" 
+            type="button" 
+            class="btn btn-success"
+            (click)="successSwal()"
+        >
+            Save
+        </button>
+        <button
+            class=" btn btn-link btn-outline-danger ml-auto text-danger"
+            data-dismiss="modal"
+            type="button"
+            (click)="modalRef.hide()"
+        >
+            Close
+        </button>
+    </div>
+</ng-template>

@@ -1,0 +1,151 @@
+<div class="header pb-6">
+    <div class="container-fluid">
+        <div class="header-body">
+            <div class="row align-items-center py-4">
+                <div class="col-lg-6 col-7">
+                    <h6 class="h2 text-dark d-inline-block mb-0">Report</h6>
+
+                    <nav aria-label="breadcrumb" class=" d-none d-md-inline-block ml-md-4">
+                        <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                            <li class=" breadcrumb-item">
+                                <a href="javascript:void(0)"> <i class="fas fa-chart-bar text-dark"> </i> </a>
+                            </li>
+                            <li aria-current="page" class="breadcrumb-item active">
+                                Report
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid mt--6">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <h3 class="m-0 text-white"> Reporting Tool </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-5">
+                            <div class="form-group">
+                                <label class="form-control-label"> Report type </label>
+                                <select class="form-control custom-select">
+                                    <option hidden selected>Please pick</option>
+                                    <option> Report 1 </option>
+                                    <option> Report 2 </option>
+                                    <option> Report 3 </option>
+                                    <option> Report 4 </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-5">
+                            <div class="form-group">
+                                <label class="form-control-label"> Date range </label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input 
+                                        type="text"
+                                        class="form-control"
+                                        bsDaterangepicker
+                                        [bsConfig]="bsDPConfig"
+                                        placeholder="Date range"
+                                        name="bsDaterangepicker"
+                                    >
+                                  </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-2 d-flex align-items-center">
+                            <button class="btn btn-default" type="button"> Search </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="m-0 mt-2 text-white"> Report 1 </h3>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button class=" btn btn-success" type="button"> Print </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="amchart" id="chartdiv"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="m-0 mt-2 text-white"> Report 2 </h3>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button class=" btn btn-success" type="button"> Print </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="amchart" id="chartdiv1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="m-0 mt-2 text-white"> Report 3 </h3>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button class=" btn btn-success" type="button"> Print </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="amchart" id="chartdiv2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12 col-lg-6">
+            <div class="card">
+                <div class="card-header bg-default">
+                    <div class="row">
+                        <div class="col-6">
+                            <h3 class="m-0 mt-2 text-white"> Report 4 </h3>
+                        </div>
+                        <div class="col-6 text-right">
+                            <button class=" btn btn-success" type="button"> Print </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart">
+                        <div class="amchart" id="chartdiv3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
